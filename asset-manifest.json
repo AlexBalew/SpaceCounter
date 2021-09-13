@@ -1,8 +1,8 @@
 {
   "files": {
     "main.css": "/SpaceCounter/static/css/main.711bcd94.chunk.css",
-    "main.js": "/SpaceCounter/static/js/main.fbd7e62b.chunk.js",
-    "main.js.map": "/SpaceCounter/static/js/main.fbd7e62b.chunk.js.map",
+    "main.js": "/SpaceCounter/static/js/main.52c7708a.chunk.js",
+    "main.js.map": "/SpaceCounter/static/js/main.52c7708a.chunk.js.map",
     "runtime-main.js": "/SpaceCounter/static/js/runtime-main.4d18df45.js",
     "runtime-main.js.map": "/SpaceCounter/static/js/runtime-main.4d18df45.js.map",
     "static/js/2.852dfbcb.chunk.js": "/SpaceCounter/static/js/2.852dfbcb.chunk.js",
@@ -17,6 +17,6 @@
     "static/js/runtime-main.4d18df45.js",
     "static/js/2.852dfbcb.chunk.js",
     "static/css/main.711bcd94.chunk.css",
-    "static/js/main.fbd7e62b.chunk.js"
+    "static/js/main.52c7708a.chunk.js"
   ]
 }
