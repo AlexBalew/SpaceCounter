@@ -84,6 +84,7 @@ function APP() {
         <div style={{
             background: `url(https://wallpapers-hub.art/wallpaper-images/136632.jpg)`,
             height: '100vh',
+            backgroundSize: 'cover'
         }}>
             <Container fixed maxWidth="md" className={classes.root}>
                 <Grid container spacing={4} justifyContent={'center'}>
