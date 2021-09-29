@@ -2,9 +2,12 @@ import {Grid} from '@material-ui/core';
 import {Card} from '@material-ui/core';
 import {makeStyles} from '@material-ui/core';
 import {Container} from '@material-ui/core';
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import {Counter} from './Counter';
 import {CounterSettings} from './CounterSettings';
+import {useDispatch, useSelector} from "react-redux";
+import {AppStateType} from "./bll/store";
+import {clearCounterLSAC, decAC, incAC, resetAC, setCounterSettingsAC} from "./bll/counter-reducer";
 
 
 const useStyles = makeStyles({
@@ -36,47 +39,55 @@ function APP() {
 
     const classes = useStyles();
 
-    let count = JSON.parse(localStorage.getItem('startValue')!)
-    let [startValue, setStartValue] = useState<number>(JSON.parse(localStorage.getItem('startValue')!))
-    let [maxValue, setMaxValue] = useState<number>(JSON.parse(localStorage.getItem('maxValue')!))
-    let [startValueDisplay, setStartValueDisplay] = useState<number>(count ? count : 0)
+    let value = useSelector<AppStateType, number>(state => state.counter.value)
+    const startValueDisplay = useSelector<AppStateType, number>(state => state.counter.startValue)
+    const maxValueDisplay = useSelector<AppStateType, number>(state => state.counter.maxValue)
+    const dispatch = useDispatch()
+
+    let startValue = +localStorage.getItem('startValue')!
+    let maxValue = +localStorage.getItem('maxValue')!
+
+    useEffect(() => {
+
+    }, [])
+
     let [error, setError] = useState<boolean>(false)
 
     function Inc() {
-        if (startValueDisplay < maxValue) {
-            setError(false)
-            setStartValueDisplay(startValueDisplay + 1)
-        } else {
-            setError(true)
+            if (value < maxValue) {
+                setError(false)
+                dispatch(incAC())
+            } else {
+                setError(true)
+            }
         }
-    }
 
     function Dec() {
-        if (startValueDisplay > startValue) {
-            setError(false)
-            setStartValueDisplay(startValueDisplay - 1)
-        } else {
-            setError(true)
-        }
+            if (value > startValue) {
+                setError(false)
+                dispatch(decAC())
+            } else {
+                setError(true)
+            }
     }
 
-    function Reset() {
-        setStartValueDisplay(startValue)
+    function Reset(startValue: number) {
+        dispatch(resetAC(startValue))
         setError(false)
     }
+
 
     const setToLocalStorage = () => {
         setError(false)
-        setStartValueDisplay(startValue)
-        localStorage.setItem('startValue', JSON.stringify(startValue))
-        localStorage.setItem('maxValue', JSON.stringify(maxValue))
+        if (startValueDisplay && maxValueDisplay) {
+            dispatch(setCounterSettingsAC(startValueDisplay))
+        }
     }
     const clearLocalStorage = () => {
         localStorage.clear()
         setError(false)
-        setStartValue(0)
-        setMaxValue(0)
-        setStartValueDisplay(0)
+        dispatch(clearCounterLSAC())
+        dispatch(resetAC(0))
     }
 
 
@@ -90,13 +101,13 @@ function APP() {
                 <Grid container spacing={4} justifyContent={'center'}>
                     <Grid item md={4}>
                         <Card variant="outlined" square className={classes.CardItem}>
-                            <Counter count={count}
+                            <Counter value={value}
                                      maxValue={maxValue}
                                      Inc={Inc}
                                      Reset={Reset}
                                      Dec={Dec}
                                      startValue={startValue}
-                                     startvalueDisplay={startValueDisplay}
+                                     startValueDisplay={startValueDisplay}
                                      setError={setError}
                                      error={error}
                                      classes={classes}
@@ -105,14 +116,12 @@ function APP() {
                     </Grid>
                     <Grid item md={5}>
                         <Card variant="outlined" square className={classes.CardItem}>
-                            <CounterSettings count={count}
-                                             startValue={startValue}
+                            <CounterSettings startValue={startValue}
                                              maxValue={maxValue}
                                              setToLocalStorage={setToLocalStorage}
                                              clearLocalStorage={clearLocalStorage}
-                                             setStartValue={setStartValue}
-                                             setMaxValue={setMaxValue}
                                              classes={classes}
+                                             maxValueDisplay={maxValueDisplay}
                                              startValueDisplay={startValueDisplay}
                                              setError={setError}
                             />
