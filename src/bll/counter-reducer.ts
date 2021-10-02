@@ -1,11 +1,8 @@
 const initState = {
     value: 0,
     startValue: 0,
-    maxValue: 5
-
+    maxValue: 1
 }
-
-type InitStateType = typeof initState
 
 export const counterReducer = (state: InitStateType = initState, action: AllACType): InitStateType => {
     switch (action.type) {
@@ -30,26 +27,13 @@ export const counterReducer = (state: InitStateType = initState, action: AllACTy
         case 'SET_MAX_VALUE' : {
             return {...state, maxValue: action.settingsMaxValue}
         }
+        case 'SET_START_VALUES' : {
+            return {...state, startValue: action.startValue, maxValue: action.maxValue, value: action.startValue}
+        }
         default:
             return state
     }
 }
-
-export type AllACType = IncACType
-    | DecACType
-    | ResetACType
-    | setCounterSettingsACType
-    | clearCounterLSACType
-    | setStartValueACType
-    | setMaxValueACType
-
-export type IncACType = ReturnType<typeof incAC>
-export type DecACType = ReturnType<typeof decAC>
-export type ResetACType = ReturnType<typeof resetAC>
-export type setCounterSettingsACType = ReturnType<typeof setCounterSettingsAC>
-export type clearCounterLSACType = ReturnType<typeof clearCounterLSAC>
-export type setStartValueACType = ReturnType<typeof setStartValueAC>
-export type setMaxValueACType = ReturnType<typeof setMaxValueAC>
 
 
 export const incAC = () => {
@@ -97,3 +81,43 @@ export const setMaxValueAC = (settingsMaxValue: number) => {
         settingsMaxValue
     } as const
 }
+
+export const setStartValuesAC = (startValue: number, maxValue: number) => {
+    return {
+        type: 'SET_START_VALUES',
+        startValue,
+        maxValue
+    } as const
+}
+
+/*export const setStartValueTC =  (value: string)=> async(dispatch: Dispatch<any>)=>{
+    const res = await apiController.getStartNumbers(value)
+    if(res){
+        dispatch(setStartValuesAC(res))
+
+    }
+}*/
+
+
+
+type InitStateType = typeof initState
+
+export type AllACType = IncACType
+    | DecACType
+    | ResetACType
+    | setCounterSettingsACType
+    | clearCounterLSACType
+    | setStartValueACType
+    | setMaxValueACType
+    | setStartValuesACType
+
+export type IncACType = ReturnType<typeof incAC>
+export type DecACType = ReturnType<typeof decAC>
+export type ResetACType = ReturnType<typeof resetAC>
+export type setCounterSettingsACType = ReturnType<typeof setCounterSettingsAC>
+export type clearCounterLSACType = ReturnType<typeof clearCounterLSAC>
+export type setStartValueACType = ReturnType<typeof setStartValueAC>
+export type setMaxValueACType = ReturnType<typeof setMaxValueAC>
+export type setStartValuesACType = ReturnType<typeof setStartValuesAC>
+
+

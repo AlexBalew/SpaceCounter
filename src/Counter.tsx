@@ -1,24 +1,21 @@
+import React, {SetStateAction, Dispatch} from 'react';
 import {Typography} from '@material-ui/core';
 import {ClassNameMap} from '@material-ui/core/styles/withStyles';
-import React from 'react';
-import {SetStateAction} from 'react';
-import {Dispatch} from 'react';
 import {UniButton} from './Components/UniButton';
 
 export type CounterPropsType = {
     value: number
-    maxValue: number
     Inc: () => void
-    Reset: (startValue: number) => void
     Dec: () => void
-    startValue: number
+    Reset: (startValue: number) => void
     startValueDisplay: number
+    maxValueDisplay: number
     setError: Dispatch<SetStateAction<boolean>>
     error: boolean
     classes: ClassNameMap<"root" | "error">
 }
 
-export function Counter(props: CounterPropsType) {
+export const  Counter:React.FC<CounterPropsType> = (props) =>{
     return (
         <div>
             <Typography align={"center"}
@@ -33,10 +30,11 @@ export function Counter(props: CounterPropsType) {
             <UniButton callback={props.Dec}
                        title='-1'
             />
-            <UniButton callback={() => {props.Reset(props.startValue)}}
+            <UniButton callback={() => {props.Reset(props.startValueDisplay)}}
                        title='Reset'
             />
-            {/*{props.count === props.maxValue && <div className='string'>{props.maxValue} is a max number here</div>}*/}
+            {props.value === props.maxValueDisplay && <div className='string'>{props.maxValueDisplay} is a max number here</div>}
+            {props.value === props.startValueDisplay && <div className='string'>{props.startValueDisplay} is a min number here</div>}
         </div>
     )
 }

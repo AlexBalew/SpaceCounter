@@ -1,5 +1,4 @@
-import {Box, Input} from '@material-ui/core';
-import {Typography} from '@material-ui/core';
+import {Box, Input, Typography} from '@material-ui/core';
 import React, {ChangeEvent, Dispatch, SetStateAction} from 'react';
 import {UniButton} from './Components/UniButton';
 import {ClassNameMap} from '@material-ui/core/styles/withStyles';
@@ -7,8 +6,6 @@ import {useDispatch} from "react-redux";
 import {setMaxValueAC, setStartValueAC} from "./bll/counter-reducer";
 
 export type CounterSettingsPropsType = {
-    startValue: number
-    maxValue: number
     setToLocalStorage: () => void
     clearLocalStorage: () => void
     classes: ClassNameMap<"error" | "root" | "CardItem" | "Input">
@@ -18,6 +15,7 @@ export type CounterSettingsPropsType = {
 }
 
 export function CounterSettings(props: CounterSettingsPropsType) {
+
     const dispatch = useDispatch()
 
     const onChangeStartValueHandler = (e: ChangeEvent<HTMLInputElement>) => {
@@ -51,7 +49,7 @@ export function CounterSettings(props: CounterSettingsPropsType) {
                 minWidth: '90px', marginLeft: '60px'
             }}>Start value</Typography><Input type='number'
                                               inputProps={{style: {textAlign: 'center', width: "50px"}}}
-                                              value={props.startValue}
+                                              value={props.startValueDisplay}
                                               onChange={onChangeStartValueHandler}/>
             </div>
             <div className={props.classes.Input}><Typography variant={'overline'} style={{
@@ -60,7 +58,7 @@ export function CounterSettings(props: CounterSettingsPropsType) {
             }}>Max value</Typography> <Input type='number'
                                              className={props.classes.Input}
                                              inputProps={{style: {textAlign: 'center', width: "50px"}}}
-                                             value={props.maxValue}
+                                             value={props.maxValueDisplay}
                                              onChange={onChangeMaxValueHandler}
             />
             </div>
