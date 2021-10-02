@@ -1,22 +1,22 @@
 {
   "files": {
     "main.css": "/SpaceCounter/static/css/main.711bcd94.chunk.css",
-    "main.js": "/SpaceCounter/static/js/main.a0ef8b41.chunk.js",
-    "main.js.map": "/SpaceCounter/static/js/main.a0ef8b41.chunk.js.map",
+    "main.js": "/SpaceCounter/static/js/main.c79e61a8.chunk.js",
+    "main.js.map": "/SpaceCounter/static/js/main.c79e61a8.chunk.js.map",
     "runtime-main.js": "/SpaceCounter/static/js/runtime-main.c47f00d8.js",
     "runtime-main.js.map": "/SpaceCounter/static/js/runtime-main.c47f00d8.js.map",
-    "static/js/2.671d2555.chunk.js": "/SpaceCounter/static/js/2.671d2555.chunk.js",
-    "static/js/2.671d2555.chunk.js.map": "/SpaceCounter/static/js/2.671d2555.chunk.js.map",
+    "static/js/2.364a19b2.chunk.js": "/SpaceCounter/static/js/2.364a19b2.chunk.js",
+    "static/js/2.364a19b2.chunk.js.map": "/SpaceCounter/static/js/2.364a19b2.chunk.js.map",
     "static/js/3.10115001.chunk.js": "/SpaceCounter/static/js/3.10115001.chunk.js",
     "static/js/3.10115001.chunk.js.map": "/SpaceCounter/static/js/3.10115001.chunk.js.map",
     "index.html": "/SpaceCounter/index.html",
     "static/css/main.711bcd94.chunk.css.map": "/SpaceCounter/static/css/main.711bcd94.chunk.css.map",
-    "static/js/2.671d2555.chunk.js.LICENSE.txt": "/SpaceCounter/static/js/2.671d2555.chunk.js.LICENSE.txt"
+    "static/js/2.364a19b2.chunk.js.LICENSE.txt": "/SpaceCounter/static/js/2.364a19b2.chunk.js.LICENSE.txt"
   },
   "entrypoints": [
     "static/js/runtime-main.c47f00d8.js",
-    "static/js/2.671d2555.chunk.js",
+    "static/js/2.364a19b2.chunk.js",
     "static/css/main.711bcd94.chunk.css",
-    "static/js/main.a0ef8b41.chunk.js"
+    "static/js/main.c79e61a8.chunk.js"
   ]
 }
